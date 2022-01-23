@@ -29,7 +29,7 @@ steps:
     args: ['apply', '-f', 'k8s']
     env:
       - 'CLOUDSDK_COMPUTE_REGION=europe-west4'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=spring-auto'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'
 images:
 - 'europe-west4-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-api-gateway'
 - 'europe-west4-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-visits-service'
