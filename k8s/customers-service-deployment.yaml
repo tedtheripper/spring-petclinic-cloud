@@ -8,7 +8,7 @@ metadata:
   name: customers-service
   namespace: spring-petclinic
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: customers-service
@@ -19,14 +19,14 @@ spec:
         app: customers-service
     spec:
       containers:
-      - image: ${REPOSITORY_PREFIX}/spring-petclinic-cloud-customers-service:latest
+      - image: europe-west4-docker.pkg.dev/plated-monolith-329615/petclinic/spring-petclinic-cloud-customers-service:latest
         name: customers-service
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
             port: 8080
             path: /actuator/health/liveness
-          initialDelaySeconds: 90
+          initialDelaySeconds: 180
           periodSeconds: 5
         readinessProbe:
           httpGet:
@@ -41,13 +41,13 @@ spec:
           limits:
             memory: 1Gi
           requests:
-            cpu: 2000m
+            cpu: 1000m
             memory: 1Gi
         env:
         - name: SPRING_PROFILES_ACTIVE
-          value: kubernetes
+          value: kubernetes,mysql
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:mysql://customers-db-mysql.spring-petclinic.svc.cluster.local:3306/service_instance_db?queryInterceptors=brave.mysql8.TracingQueryInterceptor&exceptionInterceptors=brave.mysql8.TracingExceptionInterceptor&zipkinServiceName=customers-db
+          value: jdbc:mysql://10.37.208.3:3306/mysql_petclinic
         - name: SPRING_DATASOURCE_USERNAME
           value: root
         - name: SPRING_DATASOURCE_PASSWORD
@@ -61,4 +61,14 @@ spec:
         - containerPort: 8080
         resources: {}
       restartPolicy: Always
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                    - customer-service
+              topologyKey: "kubernetes.io/hostname"
 status: {}

@@ -18,14 +18,14 @@ spec:
         app: api-gateway
     spec:
       containers:
-      - image: ${REPOSITORY_PREFIX}/spring-petclinic-cloud-api-gateway:latest
+      - image: europe-west4-docker.pkg.dev/plated-monolith-329615/petclinic/spring-petclinic-cloud-api-gateway:latest
         name: api-gateway
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
             port: 8080
             path: /actuator/health/liveness
-          initialDelaySeconds: 90
+          initialDelaySeconds: 180
           periodSeconds: 5
         readinessProbe:
           httpGet:
@@ -40,7 +40,7 @@ spec:
           limits:
             memory: 1Gi
           requests:
-            cpu: 2000m
+            cpu: 1000m
             memory: 1Gi
         env:
         - name: SPRING_PROFILES_ACTIVE
