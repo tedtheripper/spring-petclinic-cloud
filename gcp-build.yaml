@@ -24,12 +24,12 @@ steps:
     args: ['get', 'pods']
     env:
       - 'CLOUDSDK_COMPUTE_REGION=europe-west4'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster2'
   - name: 'gcr.io/cloud-builders/kubectl'
     args: ['apply', '-f', 'k8s']
     env:
       - 'CLOUDSDK_COMPUTE_REGION=europe-west4'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster2'
 images:
 - 'europe-west1-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-api-gateway'
 - 'europe-west1-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-visits-service'
