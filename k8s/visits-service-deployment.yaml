@@ -18,7 +18,7 @@ spec:
         app: visits-service
     spec:
       containers:
-      - image: europe-west4-docker.pkg.dev/plated-monolith-329615/petclinic/spring-petclinic-cloud-visits-service:latest
+      - image: europe-west1-docker.pkg.dev/plated-monolith-329615/petclinic/spring-petclinic-cloud-visits-service:latest
         name: visits-service
         imagePullPolicy: Always
         livenessProbe:
@@ -46,7 +46,7 @@ spec:
         - name: SPRING_PROFILES_ACTIVE
           value: kubernetes,mysql
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:mysql://10.37.208.3:3306/mysql_petclinic
+          value: jdbc:mysql://10.37.209.3:3306/petclinic_visits
         - name: SPRING_DATASOURCE_USERNAME
           value: root
         - name: SPRING_DATASOURCE_PASSWORD
