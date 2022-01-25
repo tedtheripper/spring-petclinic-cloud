@@ -31,8 +31,8 @@ steps:
       - 'CLOUDSDK_COMPUTE_REGION=europe-west1'
       - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'
 images:
-- 'europe-west4-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-api-gateway'
-- 'europe-west4-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-visits-service'
-- 'europe-west4-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-vets-service'
-- 'europe-west4-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-customers-service'
+- 'europe-west1-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-api-gateway'
+- 'europe-west1-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-visits-service'
+- 'europe-west1-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-vets-service'
+- 'europe-west1-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-customers-service'
 
