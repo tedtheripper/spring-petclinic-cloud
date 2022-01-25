@@ -1,34 +1,34 @@
 steps:
   - name: maven:3-jdk-11
     entrypoint: mvn
-    args: ['spring-boot:build-image', '-Pk8s', '-DREPOSITORY_PREFIX=europe-west4-docker.pkg.dev/$PROJECT_ID/petclinic']
+    args: ['spring-boot:build-image', '-Pk8s', '-DREPOSITORY_PREFIX=europe-west1-docker.pkg.dev/$PROJECT_ID/petclinic']
 
   - name: 'gcr.io/cloud-builders/docker'
     args:
     - 'push'
-    - 'europe-west4-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-api-gateway'
+    - 'europe-west1-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-api-gateway'
   - name: 'gcr.io/cloud-builders/docker'
     args:
     - 'push'
-    - 'europe-west4-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-visits-service'
+    - 'europe-west1-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-visits-service'
   - name: 'gcr.io/cloud-builders/docker'
     args:
     - 'push'
-    - 'europe-west4-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-vets-service'
+    - 'europe-west1-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-vets-service'
   - name: 'gcr.io/cloud-builders/docker'
     args:
     - 'push'
-    - 'europe-west4-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-customers-service'
+    - 'europe-west1-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-customers-service'
 
   - name: 'gcr.io/cloud-builders/kubectl'
     args: ['get', 'pods']
     env:
-      - 'CLOUDSDK_COMPUTE_REGION=europe-west4'
+      - 'CLOUDSDK_COMPUTE_REGION=europe-west1'
       - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'
   - name: 'gcr.io/cloud-builders/kubectl'
     args: ['apply', '-f', 'k8s']
     env:
-      - 'CLOUDSDK_COMPUTE_REGION=europe-west4'
+      - 'CLOUDSDK_COMPUTE_REGION=europe-west1'
       - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'
 images:
 - 'europe-west4-docker.pkg.dev/$PROJECT_ID/petclinic/spring-petclinic-cloud-api-gateway'
