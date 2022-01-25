@@ -18,7 +18,7 @@ spec:
         app: api-gateway
     spec:
       containers:
-      - image: europe-west4-docker.pkg.dev/plated-monolith-329615/petclinic/spring-petclinic-cloud-api-gateway:latest
+      - image: europe-west1-docker.pkg.dev/plated-monolith-329615/petclinic/spring-petclinic-cloud-api-gateway:latest
         name: api-gateway
         imagePullPolicy: Always
         livenessProbe:
