@@ -48,9 +48,9 @@ data:
       metrics:
         export:
           prometheus:
-            enabled: true
+            enabled: false
           wavefront:
-            enabled: true
+            enabled: false
 
     customers-service-id: http://customers-service.spring-petclinic.svc.cluster.local:8080
     visits-service-id: http://vists-service.spring-petclinic.svc.cluster.local:8080

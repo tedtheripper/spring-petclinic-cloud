@@ -8,7 +8,7 @@ metadata:
   name: customers-service
   namespace: spring-petclinic
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: customers-service
@@ -41,8 +41,8 @@ spec:
           limits:
             memory: 1Gi
           requests:
-            cpu: 250m
-            memory: 512Mi
+            cpu: 300m
+            memory: 1Gi
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: kubernetes,mysql
@@ -55,6 +55,8 @@ spec:
              secretKeyRef:
                name: customers-db-mysql
                key: mysql-root-password
+        - name: MANAGEMENT_METRICS_EXPORT_WAVEFRONT_URI
+          value: proxy://wavefront-proxy.spring-petclinic.svc.cluster.local:2878
         ports:
         - containerPort: 8080
       restartPolicy: Always
